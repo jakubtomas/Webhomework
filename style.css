@@ -1,0 +1,126 @@
+body {
+  background-color: whitesmoke;
+  margin: 0 auto;
+  padding: 0;
+}
+
+
+header {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  width: 100%;
+  text-align: center;
+  border-bottom: 2px dashed black;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+footer {
+  text-align: center;
+}
+
+.all {
+  width: 80%;
+  margin-left: 10%;
+}
+
+.first {
+  text-align: center;
+
+}
+.second {
+  display: block;
+  width: 100%;
+
+}
+.three {
+  display: block;
+}
+
+.text {
+  float: left;/*  probably delete this line */
+  display: inline-block;
+  /*width: 49%;*/
+
+  text-align: justify;
+}
+.text2 {
+  text-align: justify;
+}
+.city {
+  display: inline-block;
+  float: right;
+  max-width: 25%;
+  height: auto;
+  border-radius: 10px;
+  margin-left: 1%;
+  margin-bottom: 1%;
+
+}
+.logo {
+
+
+  float: right;
+  height: 50px;
+  width: auto;
+  display: block;
+  margin-top: 20px;
+  margin-right: 1%;
+}
+.header {
+  display: inline-block;
+}
+
+footer {
+  background-color: #FFA500;
+  display: block;
+
+  padding: 0;
+  margin: 0;
+
+}
+.footer {
+  display: block;
+  margin: 0;
+  padding: 2px;
+  margin-bottom: 1px;
+}
+
+
+.yellow-cub-left {
+  background-color: yellow;
+  position: fixed;
+  height: 66px;
+  width: 21px;
+  border: 3px solid black;
+  bottom: 45%;
+  left: 0;
+
+
+}
+
+.yellow-cub-right {
+  background-color: yellow;
+  position: fixed;
+  height: 66px;
+  width: 21px;
+  border: 3px solid black;
+  bottom: 45%;
+
+  right: 0;
+
+}
+.number {
+  text-align: center;
+}
+
+code {
+  background-color: red;
+  color: white;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-right: 1px;
+}
