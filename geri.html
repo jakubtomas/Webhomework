@@ -1,82 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Fetch json</title>
-  <style>
-    .user{
-      display: flex;
-      background:#f4f4f4;
-      padding:10px;
-      margin-bottom:10px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fetch json </title>
+    <style>
+        .user {
+            display: flex;
+            background: #f4f4f4;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
 
-    .user ul{
-      list-style: none;
-    }
-  </style>
+        .user ul {
+            list-style: none;
+        }
+    </style>
 </head>
 <body>
-
-<h1>Hello world</h1>
-  <button id="button">fetch data</button>
-  <br><br>
-  <h1>Load data</h1>
-  <div id="users"></div>
-
-
-  <div>
+<div>
     <p></p>
-  </div>
-  <script>
-     const inputData = [
-      {
-        brand: "Pereg",
-        years: [2015, 2012, 2005]
-      },
-      {
-        brand: "Tokaj",
-        years: [2008, 2017, 2011]
-      },
-      {
-        brand: "Prosecco",
-        years: [2004, 2011, 2013]
-      },
-      {
-        brand: "Sauvignon",
-        years: [2008, 2014, 2010]
-      }
+</div>
+<script>
+
+    const inputData = [
+        {
+            name: "New Releases",
+            videos: [
+                {
+                    id: 70111470,
+                    title: "Die Hard",
+                    boxart: "http://cdn-0.nflximg.com/images/2891/DieHard.jpg",
+                    uri: "http://api.netflix.com/catalog/titles/movies/70111470",
+                    rating: 4.0,
+                    bookmark: []
+                },
+                {
+                    id: 654356453,
+                    title: "Bad Boys",
+                    boxart: "http://cdn-0.nflximg.com/images/2891/BadBoys.jpg",
+                    uri: "http://api.netflix.com/catalog/titles/movies/70111470",
+                    rating: 5.0,
+                    bookmark: [{id: 432534, time: 65876586}]
+                }
+            ]
+        },
+        {
+            name: "Dramas",
+            videos: [
+                {
+                    id: 65432445,
+                    title: "The Chamber",
+                    boxart: "http://cdn-0.nflximg.com/images/2891/TheChamber.jpg",
+                    uri: "http://api.netflix.com/catalog/titles/movies/70111470",
+                    rating: 4.0,
+                    bookmark: []
+                },
+                {
+                    id: 675465,
+                    title: "Fracture",
+                    boxart: "http://cdn-0.nflximg.com/images/2891/Fracture.jpg",
+                    uri: "http://api.netflix.com/catalog/titles/movies/70111470",
+                    rating: 5.0,
+                    bookmark: [{id: 432534, time: 65876586}]
+                }
+            ]
+        }
     ];
-     const output = ["Tokaj", "Prosecco"];
-
-    // return the names of brands which have a year 2011
 
 
-     console.log(inputData);
-
-     //const result = inputData.map(data => data.years);
-     const result = inputData.filter(data => data.years.flat().every(x=> x >=2008))
-             .map(data =>  data.brand);
-
-
-     console.log(result);
-
-
-
-
-
-
-     outputFunction = inputData => {
-
-      return [];
+    const output = {
+        70111470: {
+            title: "Die Hard",
+            boxart: "http://cdn-0.nflximg.com/images/2891/DieHard.jpg"
+        },
+        654356453: {
+            title: "Bad Boys",
+            boxart: "http://cdn-0.nflximg.com/images/2891/BadBoys.jpg"
+        },
+        65432445: {
+            title: "The Chamber",
+            boxart: "http://cdn-0.nflximg.com/images/2891/TheChamber.jpg"
+        },
+        675465: {
+            title: "Fracture",
+            boxart: "http://cdn-0.nflximg.com/images/2891/Fracture.jpg"
+        }
     };
+    console.log(output);
+    console.log("===========================Stringfiy");
+    
+
+    let stringResult = JSON.stringify(output); /// put data into Strinn
+    console.log(stringResult);
+    
+    console.log("end=================================");
+
+    let result = inputData.map(value => value.videos); // take only the videos data
+    console.log(result);
+
+    result = result.flat(); // put together 2 array in array into 1 array
+
+    //var object2 = JSON.parse(StringJson);
+    let array = [];
+
+    let resulObject ={} ;
+
+    for (let i = 0; i < result.length; i++) {
+        // push into array
+        array.push(
+            // JSON parse create Object json from String JSon
+            JSON.parse(
+                createStringJson(result[i].id, result[i].title,result[i].boxart)));
+
+        // create object from all object what are  in array
+        Object.assign(resulObject,array[i])
+    }
+
+    function createStringJson(id,  title, boxart) {
+
+        return "{\"" +id +"\" :" +
+        "{" +
+            "\"title\" :" + "\""+ title +"\""+ "," +
+            "\"boxart\":" + "\""+ boxart +"\""+
+        "}}"
+
+    }
+
+
+    console.log("Result oBject =========================");
+    console.log(resulObject);
+
+    /* return  value : {
+        value : {
+            title :  name_title,
+            boxart: name_boxart
+        },
+    }*/
+
+
+    /*result = result.map(value => {
+        return {
+            id: value.id, title: value.title, boxart: value.boxart
+        }
+    });*/
+
+    /*result.reduce((accumulator, currentValue) => {
+        console.log("accumulator");
+        console.log(accumulator);
+
+        console.log("currentValue");
+        console.log(currentValue);
+
+
+        return {
+
+        }
 
 
 
+        }
+    )
+*/
+    /*
+      result =  result.reduce((accumulator, currentValue) => {
+           console.log("Accumulator");
+           console.log(accumulator);
+           console.log("Current value");
+           console.log(currentValue);
+           return {
+             //  ...accumulator,
+               [currentValue.id]: {
+                   title: currentValue.title,
+                   boxart: currentValue.boxart
+               }
+           };
+       }, {});
 
 
-  </script>
+
+       console.log(result);
+    */
+
+</script>
 </body>
 </html>
