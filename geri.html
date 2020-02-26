@@ -24,164 +24,59 @@
 </div>
 <script>
 
-    const inputData = [
+    const input = [
         {
-            name: "New Releases",
-            videos: [
-                {
-                    id: 70111470,
-                    title: "Die Hard",
-                    boxart: "http://cdn-0.nflximg.com/images/2891/DieHard.jpg",
-                    uri: "http://api.netflix.com/catalog/titles/movies/70111470",
-                    rating: 4.0,
-                    bookmark: []
-                },
-                {
-                    id: 654356453,
-                    title: "Bad Boys",
-                    boxart: "http://cdn-0.nflximg.com/images/2891/BadBoys.jpg",
-                    uri: "http://api.netflix.com/catalog/titles/movies/70111470",
-                    rating: 5.0,
-                    bookmark: [{id: 432534, time: 65876586}]
-                }
-            ]
+            id: 1,
+            name: "orange",
+            category: "fruits"
         },
         {
-            name: "Dramas",
-            videos: [
-                {
-                    id: 65432445,
-                    title: "The Chamber",
-                    boxart: "http://cdn-0.nflximg.com/images/2891/TheChamber.jpg",
-                    uri: "http://api.netflix.com/catalog/titles/movies/70111470",
-                    rating: 4.0,
-                    bookmark: []
-                },
-                {
-                    id: 675465,
-                    title: "Fracture",
-                    boxart: "http://cdn-0.nflximg.com/images/2891/Fracture.jpg",
-                    uri: "http://api.netflix.com/catalog/titles/movies/70111470",
-                    rating: 5.0,
-                    bookmark: [{id: 432534, time: 65876586}]
-                }
-            ]
+            id: 2,
+            name: "apple",
+            category: "fruits"
+        },
+        {
+            id: 3,
+            name: "carrot",
+            category: "vegatable"
+        },
+        {
+            id: 4,
+            name: "pear",
+            category: "fruits"
         }
     ];
 
+    // CREATE AN ARRAY WITH THE CATEGORY TITLES
+    // DO NOT HAVE REPEATING VALUES
 
-    const output = {
-        70111470: {
-            title: "Die Hard",
-            boxart: "http://cdn-0.nflximg.com/images/2891/DieHard.jpg"
-        },
-        654356453: {
-            title: "Bad Boys",
-            boxart: "http://cdn-0.nflximg.com/images/2891/BadBoys.jpg"
-        },
-        65432445: {
-            title: "The Chamber",
-            boxart: "http://cdn-0.nflximg.com/images/2891/TheChamber.jpg"
-        },
-        675465: {
-            title: "Fracture",
-            boxart: "http://cdn-0.nflximg.com/images/2891/Fracture.jpg"
-        }
-    };
-    console.log(output);
-    console.log("===========================Stringfiy");
-    
-
-    let stringResult = JSON.stringify(output); /// put data into Strinn
-    console.log(stringResult);
-    
-    console.log("end=================================");
-
-    let result = inputData.map(value => value.videos); // take only the videos data
-    console.log(result);
-
-    result = result.flat(); // put together 2 array in array into 1 array
-
-    //var object2 = JSON.parse(StringJson);
-    let array = [];
-
-    let resulObject ={} ;
-
-    for (let i = 0; i < result.length; i++) {
-        // push into array
-        array.push(
-            // JSON parse create Object json from String JSon
-            JSON.parse(
-                createStringJson(result[i].id, result[i].title,result[i].boxart)));
-
-        // create object from all object what are  in array
-        Object.assign(resulObject,array[i])
-    }
-
-    function createStringJson(id,  title, boxart) {
-
-        return "{\"" +id +"\" :" +
-        "{" +
-            "\"title\" :" + "\""+ title +"\""+ "," +
-            "\"boxart\":" + "\""+ boxart +"\""+
-        "}}"
-
-    }
+    const output = ["fruits", "vegatable"];
 
 
-    console.log("Result oBject =========================");
-    console.log(resulObject);
+        let array = inputData.map(value => value.category);
+        console.log(array);
+        let helpaarray = [];
 
-    /* return  value : {
-        value : {
-            title :  name_title,
-            boxart: name_boxart
-        },
-    }*/
+        for (let i = 0; i < array.length; i++) {
+            let value = false;
+            console.log(array[i], [i]);
 
-
-    /*result = result.map(value => {
-        return {
-            id: value.id, title: value.title, boxart: value.boxart
-        }
-    });*/
-
-    /*result.reduce((accumulator, currentValue) => {
-        console.log("accumulator");
-        console.log(accumulator);
-
-        console.log("currentValue");
-        console.log(currentValue);
-
-
-        return {
-
+            for (let x = 0; x < helpaarray.length; x++) {
+                if (helpaarray[x] === array[i]) {
+                    console.log(helpaarray[x], array[i]);
+                    value = true;
+                }
+            }
+            if (!value) {
+                helpaarray[i] = array[i];
+            }
         }
 
-
-
-        }
-    )
-*/
-    /*
-      result =  result.reduce((accumulator, currentValue) => {
-           console.log("Accumulator");
-           console.log(accumulator);
-           console.log("Current value");
-           console.log(currentValue);
-           return {
-             //  ...accumulator,
-               [currentValue.id]: {
-                   title: currentValue.title,
-                   boxart: currentValue.boxart
-               }
-           };
-       }, {});
+        console.log(helpaarray);
 
 
 
-       console.log(result);
-    */
+
 
 </script>
 </body>
