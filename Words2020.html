@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="">
+    <title>homework</title>
+</head>
+
+<body>
+
+<style>
+    body {
+        margin: 0 auto;
+
+    }
+
+    .main-box {
+        display: block;
+        background-color: #03b048;
+        height: 100%;
+        width: 99%;
+        margin: 0 auto;
+
+
+    }
+
+    .box {
+        border-bottom: 2px solid black;
+    }
+
+    .box_1 {
+        display: block;
+        background-color: #0d95e8; /*delete all box color */
+        height: 80px;
+    }
+
+    .box_2 {
+        display: block;
+        background-color: #0d95a5;
+        height: 80px;
+
+    }
+
+    .box_3 {
+        display: block;
+        background-color: #f0c36d;
+        height: 80px;
+
+    }
+    .box_8 {
+        display: block;
+        background-color: #f0c36d;
+        height: 80px;
+
+    }
+
+    .section-1 {
+        display: inline-block;
+        background-color: #ffff00; /*CHANGE*/
+        padding: 10px 4px; /*CHANGE*/
+        margin-left: 3px;
+        border-radius: 3px;
+    }
+
+    .section-2 {
+        display: inline-block;
+        background-color: #138FFF; /*CHANGE*/
+        padding: 10px 3px; /*CHANGE*/
+        border-radius: 3px;
+
+    }
+
+    .section-3 {
+        display: inline-block;
+        background-color: #ffffe0; /*CHANGE*/
+        padding: 10px 3px; /*CHANGE*/
+        border-radius: 3px;
+    }
+
+    .section-8 {
+        display: inline-block;
+        background-color: #ffffe3; /*CHANGE*/
+        padding: 10px 3px; /*CHANGE*/
+        border-radius: 3px;
+    }
+
+</style>
+
+
+<header>
+    <div id="id01" class="modal">
+
+
+        <!--<div class="form">
+
+            <form class="login-form"  onsubmit="return checkInput()">
+                <input type="text"  id= "input"  placeholder="input"/>
+                <input type="submit" value="add">
+                <button>add</button>
+            </form>
+        </div>-->
+    </div>
+
+    <div id="error">
+        <input id="name" name="name" type="text" class="data"/>
+
+        <button type="submit" class="add__btn">Submit</button>
+    </div>
+
+
+</header>
+
+<h2 class="example">A heading "</h2>
+
+
+<div class="main-box" id="main-box">
+
+
+</div>
+
+
+<script>
+
+    (function () {
+
+        let mainBox = document.getElementById("main-box");
+        const box_1 = document.getElementById("box_1");
+        let nameBox;
+
+        const boxs = [];
+        var input;
+        // let box = "box_1";
+
+        document.querySelector(".add__btn").addEventListener("click", () => {
+            input = document.getElementById("name").value;
+            // dont create new dive
+            //push into boxs
+            console.log(input);
+
+            console.log(input.length);
+
+            wordLength = input.length;
+
+
+            if (wordLength !== 0) {
+               // boxs.push(3);
+                console.log(boxs.includes(wordLength));
+
+                //check the variable in array
+                console.log(wordLength);
+
+                if (boxs.includes(wordLength)) {
+                    console.log("obsahuje");
+                   // boxs.push(wordLength); // aby som vedel kolko mame rovnakych slov
+                    // probably create new arraay
+
+                    createElementP();
+                } else {
+                    // create new div
+                    boxs.push(wordLength); // new element
+                   /* console.log("neobsahuje create div element ");
+
+                    console.log("===========before sort");
+
+                    for (let i = 0; i < boxs.length; i++) { // before sor
+                        console.log(boxs[i]);
+                    }*/
+
+                    arraySort();
+                    /*console.log("=============================after ======");
+
+                    for (let i = 0; i < boxs.length; i++) { // afters sort
+                        console.log(boxs[i]);
+                    }
+
+                    console.log("========================");
+
+                    */
+
+                    for (let i = 0; i < boxs.length; i++) {
+                        if (wordLength === boxs[i] && i !== 0) {
+                            console.log(" vysledok" + boxs[i - 1]);
+                            console.log(" i am here ");
+
+                             nameBox = "box_" + boxs[i - 1];
+
+                            //mainBox = document.getElementById(nameBox);
+
+                            console.log( nameBox);
+                            console.log(mainBox);
+
+                        }
+                    }
+
+                    const divElemnt = document.createElement("div");
+
+
+                    divElemnt.setAttribute("class", "box box_" + wordLength); //set class
+                    divElemnt.setAttribute("id", "box_" + wordLength);  // set id
+                    divElemnt.style.background = random_rgba();   // set bc color
+
+
+                    divElemnt.style.display = "block";      //set inline block
+                    // potrebujem zistit  predchadazjuci potomok
+                    //
+                        console.log("dlzka ");
+
+                        console.log(boxs.length);
+
+                    if (boxs.length === 1) {
+                        console.log("box.length");
+
+                        mainBox.appendChild(divElemnt); // okey
+                    } else {
+
+                        mainBox = document.getElementById(nameBox);
+
+                         mainBox.insertAdjacentElement("afterend" , divElemnt);
+                    }
+                    createElementP();
+
+                    /// delete element according to id
+
+
+                    
+                    //push into boxs
+                    // add new p element with all settings
+
+                }
+
+                function createElementP() {
+
+                    // I have to check before or after okey
+                    console.log("create P element");
+                    const pElement = document.createElement("P"); // create p element
+
+                    pElement.textContent = input;                   // set text into new element
+
+                    pElement.addEventListener("click", e => {
+                        /*if (e.currentTarget.parentNode.childNodes.length === 1) {
+                            e.currentTarget.parentNode.remove();
+                        }*/
+
+
+                        // also delete number from array after this control taht we have t
+                        // this value aggain  and  delete box  according to id number length input
+                        console.log(e);
+                        
+                        e.currentTarget.remove();
+                    });
+
+                    pElement.style.display = "inline-block";      //set inline block
+
+                    pElement.style.background = random_rgba();    // set bcg color
+
+                    //pElement.style.padding = `${ wordLength * 2}px` + `${ wordLength * 1.5}px`;
+                    pElement.style.padding = `${ wordLength * 2}px` +" 20px";
+                    pElement.style.margin = "5px";
+
+
+                    pElement.setAttribute("class", ' section-' + wordLength); // set class
+                    pElement.setAttribute("id", input); // set id
+                    let box = "box_" + wordLength; // chosse box
+                    // set font Size
+                    // set back color
+                    pElement.style.fontSize = `${10 + wordLength * 2}px`; // set font size
+                    document.getElementById(box).appendChild(pElement); // append child
+
+                    // create events 
+                    /*document.getElementById(input).addEventListener("click", deleteElement);
+                    function deleteElement() {
+                        document.getElementById(input).remove();
+
+
+                    }*/
+
+                }
+
+                function random_rgba() {
+                    var o = Math.round, r = Math.random, s = 255;
+                    return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+                }
+
+                function arraySort() {
+                      boxs.sort(function(a, b){return a - b});
+                    //document.getElementById("demo").innerHTML = points;
+                }
+
+                /*
+                    document.querySelector(".example").innerText  =  input ;
+                    const pElement = document.createElement("P");
+
+                    pElement.textContent = input;
+
+
+                    pElement.setAttribute("class", ' section-'+wordLength ); // set class
+                      pElement.setAttribute("id", input); // set id
+                    let box = "box_"+wordLength; // chosse box
+                                        // set font Size
+                                        // set back color
+
+                      pElement.style.fontSize=`${10 + wordLength * 2}px`;
+                    document.getElementById(box).appendChild(pElement);
+                    */
+
+
+            }
+            // compare the box when we have  or not  maybe use the array
+            // create box - according to number and insert into main box ,,add class name
+            // create section accodring to numnber and insert to box according to number ,, class name
+
+
+        });
+
+    }());
+
+
+</script>
+
+
+</body>
+
+</html>
